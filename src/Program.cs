@@ -1,8 +1,19 @@
 using IWantApp.Endpoint.Categories;
+using IWantApp.Endpoint.Employees;
 using IWantApp.Infra.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSqlServer<ApplicationDbContext>(builder.Configuration["ConnectionString:IWantDB"]);
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequiredLength = 3;
+}).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<QueryAllUsersWithClaimName>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,5 +31,8 @@ app.UseHttpsRedirection();
 app.MapMethods(CategoryPost.Template, CategoryPost.Methods, CategoryPost.Action);
 app.MapMethods(CategoryGetAll.Template, CategoryGetAll.Methods, CategoryGetAll.Action);
 app.MapMethods(CategoryPut.Template, CategoryPut.Methods, CategoryPut.Action);
+
+app.MapMethods(EmployeePost.Template, EmployeePost.Methods, EmployeePost.Action);
+app.MapMethods(EmployeeGetAll.Template, EmployeeGetAll.Methods, EmployeeGetAll.Action);
 
 app.Run();
