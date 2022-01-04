@@ -6,3 +6,4 @@ EntityFrameWorkCore<br>
 EntityFrameWorkCore.Design<br>
 EntityFrameWorkCore.SqlServer<br>
 MicrosoftAspNetCore.Identity.EntityFrameWorkCore<br>
+Dapper<br>

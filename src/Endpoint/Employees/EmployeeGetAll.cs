@@ -1,8 +1,4 @@
-﻿using Dapper;
-using IWantApp.Infra.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
-using System.Security.Claims;
+﻿using IWantApp.Infra.Data;
 
 namespace IWantApp.Endpoint.Employees;
 
