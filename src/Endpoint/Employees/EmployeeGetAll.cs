@@ -1,7 +1,9 @@
 ﻿using IWantApp.Infra.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IWantApp.Endpoint.Employees;
 
+[Authorize(Policy = "EmployeePolicy")]
 public class EmployeeGetAll
 {
     public static string Template => "/employee";
